@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    table,table th{
+      border: 1px solid #f00;
+    }
+    table th{
+      width: 8rem;
+      height: 4rem;
+    }
+    .h1{
+      font-size: 2.5rem;
+    }
+    .h2{
+      font-size: 1rem;
+    }
+    .w-30{
+      width: 30%;
+    }
+    .w-50{
+      width:50%;
+    }
+    .w-75{
+      width: 75%;
+    }
+    .w-100{
+      width:100%;
+    }
+    .w-90{
+      width: 90%;
+    }
+    .c1,.c2,.c3,.c4,.c10,.c20,.c30,.c40{
+      margin:1rem;
+    }
+    .cc{
+      background-color:rgba(0,0,0,1);
+    }
+  </style>
+</head>
+<body>
+  <h1>A计划</h1>
+  <table>
+    <tr class="cc">
+      <th>
+        <div class="c1 h2"></div>
+      </th>
+      <th>
+        <div class="c2 h2"></div>
+      </th>
+      <th>
+        <div class="c3 h2"></div>
+      </th>
+      <th>
+        <div class="c4 h2"></div>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <div class="c01 h1"></div>
+      </th>
+      <th>
+        <div class="c02 h1"></div>
+      </th>
+      <th>
+        <div class="c03 h1"></div>
+      </th>
+      <th>
+        <div class="c04 h1"></div>
+      </th>
+    </tr>
+    <tr class="cc">
+      <th>
+        <div class="c10 h2"></div>
+      </th>
+      <th>
+        <div class="c20 h2"></div>
+      </th>
+      <th>
+        <div class="c30 h2"></div>
+      </th>
+      <th>
+        <div class="c40 h2"></div>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="2" class="t">
+        <input type="submit" value="-" class="h1">
+        <input type="text" id="t1" placeholder="投注倍数" value="1" class="h1 w-30" onblur="t1_onblur()">
+        <input type="submit" value="+" class="h1">
+      </th>
+      <!-- <th>
+        <div class="c2"></div>
+      </th> -->
+      <th colspan="2">
+        <div class="c100"></div>
+      </th>
+      <!-- <th>
+        <div class="c4"></div>
+      </th> -->
+    </tr>
+    <tr>
+      <th class="tt1">
+        <input type="text" id="t11" value="1" class="h1 w-90" onblur="t1_onblur()">
+        <input type="submit" value="-" class="h2">
+        <input type="submit" value="+" class="h2">
+      </th>
+      <th class="tt2">
+        <input type="text" id="t12" value="1" class="h1 w-90" onblur="t1_onblur()">
+        <input type="submit" value="-" class="h2">
+        <input type="submit" value="+" class="h2">
+      </th>
+      <th class="tt3">
+        <input type="text" id="t13" value="1" class="h1 w-90" onblur="t1_onblur()">
+        <input type="submit" value="-" class="h2">
+        <input type="submit" value="+" class="h2">
+      </th>
+      <th class="tt4">
+        <input type="text" id="t14" value="1" class="h1 w-90" onblur="t1_onblur()">
+        <input type="submit" value="-" class="h2">
+        <input type="submit" value="+" class="h2">
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <a href="javascript:;"><input type="radio">规则</a> 
+      </th>
+      <th colspan="3">
+        <input type="submit" id="sub" value="立即投注" class="h1">
+      </th>
+      <!-- <th>
+        <div class="c3"></div>
+      </th>
+      <th>
+        <div class="c4"></div>
+      </th> -->
+    </tr>
+  </table>
+  <script>
+    var $c1=document.querySelector("[class='c1 h2']");
+    var $c2=document.querySelector("[class='c2 h2']");
+    var $c3=document.querySelector("[class='c3 h2']");
+    var $c4=document.querySelector("[class='c4 h2']");
+    var $c01=document.querySelector("[class='c01 h1']");
+    var $c02=document.querySelector("[class='c02 h1']");
+    var $c03=document.querySelector("[class='c03 h1']");
+    var $c04=document.querySelector("[class='c04 h1']");
+    var $c10=document.querySelector("[class='c10 h2']");
+    var $c20=document.querySelector("[class='c20 h2']");
+    var $c30=document.querySelector("[class='c30 h2']");
+    var $c40=document.querySelector("[class='c40 h2']");
+    var $t=document.querySelectorAll("[class='t'] input");
+    var $tt1=document.querySelectorAll("[class='tt1'] input");
+    var $tt2=document.querySelectorAll("[class='tt2'] input");
+    var $tt3=document.querySelectorAll("[class='tt3'] input");
+    var $tt4=document.querySelectorAll("[class='tt4'] input");
+    var $c100=document.querySelector("[class='c100']");
+    var $t0=document.getElementById("t0");
+    var $t1=document.getElementById("t1");
+    var $t11=document.getElementById("t11");
+    var $t12=document.getElementById("t12");
+    var $t13=document.getElementById("t13");
+    var $t14=document.getElementById("t14");
+    var $sub=document.getElementById("sub");
+    $c100.innerHTML=`需付款:12元`;
+    var a=$t.length;
+    for(var i=0;i<a;i++){
+      if($t[i].value==="-"){
+        $t[i].onclick=()=>{
+          $t1.value--;
+          $c100.innerHTML=`需付款:${$t1.value*12}元`;
+        }
+      }else if($t[i].value==="+"){
+        $t[i].onclick=()=>{
+          $t1.value++;
+          $c100.innerHTML=`需付款:${$t1.value*12}元`;
+        }
+      }
+      if($tt1[i].value==="-"){
+        $tt1[i].onclick=()=>{
+         $t11.value>1?$t11.value--:$t11.value=12;
+        }
+      }else if($tt1[i].value==="+"){
+        $tt1[i].onclick=()=>{
+          $t11.value<12?$t11.value++:$t11.value=1;
+        }
+      }
+      if($tt2[i].value==="-"){
+        $tt2[i].onclick=()=>{
+          $t12.value>1?$t12.value--:$t12.value=12;;
+        }
+      }else if($tt2[i].value==="+"){
+        $tt2[i].onclick=()=>{
+          $t12.value<12?$t12.value++:$t12.value=1;
+        }
+      }
+      if($tt3[i].value==="-"){
+        $tt3[i].onclick=()=>{
+          $t13.value>1?$t13.value--:$t13.value=12;
+        }
+      }else if($tt3[i].value==="+"){
+        $tt3[i].onclick=()=>{
+          $t13.value<12?$t13.value++:$t13.value=1;
+        }
+      }
+      if($tt4[i].value==="-"){
+        $tt4[i].onclick=()=>{
+          $t14.value>1?$t14.value--:$t14.value=12;
+        }
+      }else if($tt4[i].value==="+"){
+        $tt4[i].onclick=()=>{
+          $t14.value<12?$t14.value++:$t14.value=1;
+        }
+      }
+    }
+    t1_onblur=()=>{
+      $c100.innerHTML=`需付款:${$t1.value*12}元`;
+    }
+    $sub.onclick=()=>{
+      var arr=["#f00","#ff0","#f9f","#00f","#0ff","#9f0","#0f0","#99f","#9f9","#0f9","#90f","#09f"];
+      var $x=Math.ceil(Math.random()*12);
+      var $y=Math.ceil(Math.random()*12);
+      var $z=Math.ceil(Math.random()*12);
+      var $i=Math.ceil(Math.random()*12);
+      $x==12?$c1.innerHTML=1:$c1.innerHTML=$x+1;
+      $y==12?$c2.innerHTML=1:$c2.innerHTML=$y+1;
+      $z==12?$c3.innerHTML=1:$c3.innerHTML=$z+1;
+      $i==12?$c4.innerHTML=1:$c4.innerHTML=$i+1;
+      $c01.innerHTML=$x;
+      $c02.innerHTML=$y;
+      $c03.innerHTML=$z;
+      $c04.innerHTML=$i;
+      $x==1?$c10.innerHTML=12:$c10.innerHTML=$x-1;
+      $y==1?$c20.innerHTML=12:$c20.innerHTML=$y-1;
+      $z==1?$c30.innerHTML=12:$c30.innerHTML=$z-1;
+      $i==1?$c40.innerHTML=12:$c40.innerHTML=$i-1;
+      $c1.style.background=`${arr[$c1.innerHTML-1]}`;
+      $c01.style.background=`${arr[$c01.innerHTML-1]}`;
+      $c10.style.background=`${arr[$c10.innerHTML-1]}`;
+      $c2.style.background=`${arr[$c2.innerHTML-1]}`;
+      $c02.style.background=`${arr[$c02.innerHTML-1]}`;
+      $c20.style.background=`${arr[$c20.innerHTML-1]}`;
+      $c3.style.background=`${arr[$c3.innerHTML-1]}`;
+      $c03.style.background=`${arr[$c03.innerHTML-1]}`;
+      $c30.style.background=`${arr[$c30.innerHTML-1]}`;
+      $c4.style.background=`${arr[$c4.innerHTML-1]}`;
+      $c04.style.background=`${arr[$c04.innerHTML-1]}`;
+      $c40.style.background=`${arr[$c40.innerHTML-1]}`;
+      //console.log($t11.value,$t12.value,$t13.value,$t14.value);
+      var j=0,jj=0;
+      var str=[$t11.value,$t12.value,$t13.value,$t14.value];
+      var str1=[$c01.innerHTML,$c02.innerHTML,$c03.innerHTML,$c04.innerHTML];
+      for(var i=0;i<str.length;i++){
+        if(str[i]==str1[i]){j++};
+      }
+      setTimeout(()=>{
+        j==4?alert("恭喜你中了一等奖"):j==3?alert("恭喜你中了二等奖"):j==2?alert("恭喜你中了三等奖"):alert("不要放弃，还有机会");
+      },300)
+    }
+  </script>
+</body>
+</html>
